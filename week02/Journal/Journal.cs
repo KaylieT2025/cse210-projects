@@ -15,22 +15,6 @@ public class Journal
     {
 
     }
-    /*SaveToFile (Journal)
-    public static void SaveToFile(List<Entry> Journal)
-    {
-        Console.WriteLine("SAVING FILE...");
-
-        string fileName = "fileWithAName.txt";
-        using (StreamWriter outputFile = new StreamWriter(fileName))
-        {
-            foreach (Entry _entries in Journal)
-            {
-                outputFile.WriteLine(_entries._entryText);
-            }
-        }
-    }*/
-
-
     public void LoadFromFile(string fileName)
     {
 
