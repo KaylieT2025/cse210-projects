@@ -27,6 +27,7 @@ public class Journal
             entry.Display();
             Console.WriteLine();
         }
+        Console.WriteLine($"Total of entries: {_entries.Count}");
     }
     public void SaveToFile(string fileName)
     {
