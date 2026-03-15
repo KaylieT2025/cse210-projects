@@ -1,6 +1,7 @@
 using System.Security.Cryptography.X509Certificates;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 public class Journal
 {
@@ -33,7 +34,7 @@ public class Journal
         {
             foreach(Entry entry in _entries)
             {
-                outputFile.WriteLine($"{entry._date} | {entry._promptText} | {entry._entryText}");
+                outputFile.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
             }
         }
     }

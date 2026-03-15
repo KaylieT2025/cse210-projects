@@ -54,6 +54,7 @@ partial class Program
                 //Loading from file.
                 string fileName = Console.ReadLine();
                 journal.LoadFromFile(fileName);
+                journal.DisplayAll();
                 Console.WriteLine("Journal has been fully loaded.");
                 Console.WriteLine();
             }
