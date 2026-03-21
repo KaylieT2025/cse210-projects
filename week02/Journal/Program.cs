@@ -5,7 +5,8 @@ partial class Program
 {
     static void Main(string[] args)
     {
-        //Remember to show creativity to get 100%.
+        //Creativity Requirment.
+        //I added in code to make sure it counted the total of entries added.
 
         int userInput = 0;
         Journal journal = new Journal();
