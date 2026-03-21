@@ -23,7 +23,14 @@ public class Refrence
     }
     public string GetDisplayText()
     {
-        return "";
+        if (_verse == _endVerse)
+        {
+            return $"{_book} {_chapter}:{_verse}";
+        }
+        else
+        {
+            return $"{_book} {_chapter}:{_verse}-{_endVerse}";
+        }
     }
 
 }

@@ -13,7 +13,7 @@ public class Word
 
     public void Hide()
     {
-
+        _isHidden = true;
     }
     public void Show()
     {
@@ -25,6 +25,14 @@ public class Word
     }
     public string GetDisplayText()
     {
-        return _text;
+        if (_isHidden)
+        {
+            string clean = _text.Replace(",", "").Replace(".", "").Replace(";", "");
+            return new string('_',clean.Length);
+        }
+        else
+        {
+            return _text;
+        }
     }
 }
