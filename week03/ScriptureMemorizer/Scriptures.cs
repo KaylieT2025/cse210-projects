@@ -43,6 +43,26 @@ public class Scripture
         }
         return result;
     }
+    public void Display()
+    {
+        Console.Write(_refrence.GetDisplayText() + " ");
+
+        foreach (Word word in _words)
+        {
+            if (word.IsHidden())
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(word.GetDisplayText());
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.Write(word.GetDisplayText());
+            }
+            Console.Write(" ");
+        }
+        Console.WriteLine();
+    }
     public bool IsCompletlyHidden()
     {
         foreach (Word word in _words)

@@ -5,7 +5,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Console.WriteLine("Hello World! This is the ScriptureMemorizer Project.");
+        //Creative and Excceding Reqirments.
+        //I added a method to Scriptures.cs to color the underscores red as they appear in the program. 
+        //I also made sure the program quit if you type in Quit or quit.
 
         //Scrpture.
         Refrence refrence = new Refrence("Alma", 34, 10);
@@ -16,7 +18,7 @@ class Program
         {
             //This will clear the console.
             Console.Clear();
-            Console.WriteLine(scriptures.GetDisplayText());
+            scriptures.Display();
 
             if (scriptures.IsCompletlyHidden())
             {
