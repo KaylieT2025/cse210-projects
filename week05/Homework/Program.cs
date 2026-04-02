@@ -11,5 +11,10 @@ class Program
         Console.WriteLine(assignment.GetSummary());
         Console.WriteLine();
 
+        MathAssignment mathAssignment = new MathAssignment("Section 9.2", "Problems 1-20", "Mark Yakton", "Math");
+        Console.WriteLine();
+        Console.WriteLine(mathAssignment.GetHomeworkList());
+        Console.WriteLine();
+
     }
 }
