@@ -16,5 +16,10 @@ class Program
         Console.WriteLine(mathAssignment.GetHomeworkList());
         Console.WriteLine();
 
+        WritingAssignment writingAssignment = new WritingAssignment("The Causes of WW II", "Mark Yakton", "History");
+        Console.WriteLine();
+        Console.WriteLine(writingAssignment.GetWritingInfo());
+        Console.WriteLine();
+
     }
 }
