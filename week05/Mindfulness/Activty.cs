@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
 
 public class Activity
 {
@@ -31,25 +33,20 @@ public class Activity
     public void ShowSpinner(int seconds)
     {
 
+        string[] spinner = { "|", "/", "|", "\\" };
+        DateTime startTime = DateTime.Now;
+        int i = 0;
+        while((DateTime.Now - startTime).TotalSeconds < seconds)
+        {
+            Console.Write(spinner[i % spinner.Length]);
+            Thread.Sleep(250);
+            Console.Write("\b \b");
+            i++;
+        }
     }
 
     public void ShowCountDown(int seconds)
     {
-
-        /* Console.Write("Please enter at least 10 seconds. Enter duration in seconds: ");
-        int duration = int.Parse(Console.ReadLine());
-        int _duration = duration;
-
-        //Track time
-        DateTime startTime = DateTime.Now;
-        DateTime endTime = startTime.AddSeconds(duration);
-
-
-
-        Console.ForegroundColor = ConsoleColor.Green;
-        DisplayEndingMessage(_name, _duration);
-        Console.ResetColor();
-        Console.WriteLine();*/
         for (int i = seconds; i > 0; i--)
         {
             //Color changer.
