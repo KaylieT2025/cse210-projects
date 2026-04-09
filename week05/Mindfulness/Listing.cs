@@ -20,6 +20,9 @@ public class Listing : Activity
 
     public void Run()
     {
+
+        ListingActivity();
+
         DisplayStartingMessage(_name);
         Console.WriteLine("This activity will help you reflect on the good things in your life.");
         Console.WriteLine("Having you list as many things as you can in a certain area.");
@@ -37,10 +40,12 @@ public class Listing : Activity
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddSeconds(duration);
 
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
         string prompt = GetRandomPrompt();
         _count = 0;
         Console.WriteLine(prompt);
-        Console.WriteLine(">");
+        Console.Write("> ");
+        Console.ResetColor();
 
 
         while (DateTime.Now < endTime)
@@ -51,6 +56,7 @@ public class Listing : Activity
             _count++;
         }
 
+        ShowSpinner(5);
         Console.ForegroundColor = ConsoleColor.Green;
         DisplayEndingMessage(_name, _duration);
         Console.WriteLine($"You have written {_count} entries.");

@@ -40,6 +40,8 @@ public class Breathing : Activity
             Console.WriteLine();
             Console.ResetColor();
         }
+
+        ShowSpinner(5);
         Console.ForegroundColor = ConsoleColor.Green;
         //Console.WriteLine("Good job! Activity complete!");
         //Console.WriteLine($"You have completed {duration} seconds of the breathing activity.");

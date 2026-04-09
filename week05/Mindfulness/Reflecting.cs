@@ -57,16 +57,22 @@ public class Reflecting : Activity
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddSeconds(duration);
 
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        DisplayPrompt();
+        Console.ResetColor();
+
         while (DateTime.Now < endTime)
         {
-            DisplayPrompt();
+            //DisplayPrompt();
             //Console.WriteLine();
-
+            Console.ForegroundColor = ConsoleColor.Magenta;
             DisplayQuestion();
             Console.WriteLine();
+            Console.ResetColor();
 
         }
 
+        ShowSpinner(5);
         Console.ForegroundColor = ConsoleColor.Green;
         DisplayEndingMessage(_name, _duration);
         Console.ResetColor();
