@@ -7,6 +7,7 @@ class Program
         //Console.WriteLine("Hello World! This is the Mindfulness Project.");
         //For my creative aspect I made the countdown in bretahing a diffrent color for each diget.
         //I also kept the coloring as consitent as I could through out the program messages.
+        //I used a count down timmer and a spinner throughout.
 
         int userEntry = -1;
         Breathing breathing = new Breathing();
