@@ -3,32 +3,35 @@ using System;
 public class ChecklistGoal : Goal
 {
 
-    public int _amountComplete;
+    private int _amountComplete;
     private int _target;
     private int _bonus;
 
-    public ChecklistGoal(string name, string description, string points, int target, int bonus)
+    public ChecklistGoal(string name, string description, string points, int target, int bonus) : base(name, description, points)
     {
+        _amountComplete = 0;
+        _target = target;
+        _bonus = bonus;
 
     }
 
-    public void RecordEvent()
+    public override void RecordEvent()
     {
-
+        _amountComplete++;
     }
 
-    public bool IsComplete()
+    public override bool IsComplete()
     {
-        return false;
+        return _amountComplete >= _target;
     }
 
-    public string GetStringDetails()
+    public override string GetDetailsString()
     {
-
+        return $"{base.GetDetailsString()} - Progress: {_amountComplete}/{_target} - Bonsus: {_bonus} points";
     }
 
-    public string GetStringRepestantion()
+    public override string GetStringRepresentation()
     {
-
+        return $"Checklist Goal: {GetDetailsString()} - Completed: {_amountComplete}/{_target}";
     }
 }
