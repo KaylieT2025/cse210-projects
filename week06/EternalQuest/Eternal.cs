@@ -8,19 +8,19 @@ public class Eternal : Goal
 
     }
 
-    public void RecordEvent()
+    public override void RecordEvent()
     {
 
     }
 
-    public bool IsComplete()
+    public override bool IsComplete()
     {
 
         return false;
     }
 
-    public void GetStringReprensentation()
+    public override string GetStringRepresentation()
     {
-
+        return $"Eternal Goal: {GetDetailsString()}";
     }
 }
