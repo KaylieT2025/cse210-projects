@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class GoalManager
 {
-    private List<string> _goal;
+    private List<Goal> _goal = new List<Goal>();
     private int _score;
 
     public GoalManager()
@@ -46,7 +46,7 @@ public class GoalManager
 
     }
 
-    public void LoadGoal()
+    public void LoadGoals()
     {
 
     }
