@@ -9,24 +9,27 @@ public class Goal
     public Goal(string name, string description, string points)
     {
 
+        _shortName = name;
+        _description = description;
+        _points = points;
     }
 
-    public void RecordEvent()
+    public virtual void RecordEvent()
     {
 
     }
 
-    public bool IsComplete()
+    public virtual bool IsComplete()
     {
         return false;
     }
 
-    public string GetDetailsString()
+    public virtual string GetDetailsString()
     {
         return "";
     }
 
-    public string GetStringRepresentation()
+    public virtual string GetStringRepresentation()
     {
 
         return "";
