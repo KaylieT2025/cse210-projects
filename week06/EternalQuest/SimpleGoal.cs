@@ -5,19 +5,24 @@ public class SimpleGoal : Goal
 
     private bool _isComplete;
 
-    public SimpleGoal(string name, string description, string points) : base(name)
+    public SimpleGoal(string name, string description, string points) : base(name, description, points)
     {
-        return "";
+        _isComplete = false;
     }
 
-    public void RecordEvent()
+    public override void RecordEvent()
     {
-
+        _isComplete = true;
     }
 
-    public void GetStringReprensentation()
+    public override string GetStringReprensentation()
     {
+        return $"Simple Goal: {GetDetailsString()} - Completed: {_isComplete}";
+    }
 
+    public override bool IsComplete()
+    {
+        return _isComplete;
     }
 
 
