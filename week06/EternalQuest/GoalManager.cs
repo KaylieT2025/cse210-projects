@@ -51,7 +51,7 @@ public class GoalManager
 
         Console.Write("Enter goal name: ");
         string name = Console.ReadLine();
-        Console.WriteLine():
+        Console.WriteLine();
 
         Console.Write("Enter description: ");
         string description = Console.ReadLine();
@@ -114,6 +114,19 @@ public class GoalManager
     public void SaveGoals()
     {
 
+        Console.Write("Enter filename to save: ");
+        string filename = Console.ReadLine();
+        using (StreamWriter writer = new StreamWriter(filename))
+        {
+
+            writer.WriteLine(_score);
+
+            foreach (Goal goal in _goals)
+            {
+                writer.WriteLine(goal.GetStringRepresentation());
+            }
+        }
+        Console.WriteLine($"Goals saved to {filename}.");
     }
 
     public void LoadGoals()
