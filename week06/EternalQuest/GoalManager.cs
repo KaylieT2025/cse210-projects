@@ -132,6 +132,38 @@ public class GoalManager
     public void LoadGoals()
     {
 
+        Console.Write("Enter file name: ");
+        string filename = Console.ReadLine();
+
+        _goals.Clear();
+
+        string[] lines = File.ReadAllLines(filename);
+
+        _score = int.Parse(lines[0]);
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i];
+            string[] parts = line.Split(":");
+            string goalType = parts[0].Trim();
+
+            Goal goal = null;
+            if (goalType == "Simple Goal")
+            {
+                goal = new SimpleGoal(parts[1].Trim(), parts[2].Trim(), parts[3].Trim());
+            }
+            else if (goalType == "Eternal Goal")
+            {
+                goal = new Eternal(parts[1].Trim(), parts[2].Trim(), parts[3].Trim());
+            }
+            else if (goalType == "Checklist Goal")
+            {
+                goal = new ChecklistGoal(parts[1].Trim(), parts[2].Trim(), parts[3].Trim(), int.Parse(parts[4].Trim()), int.Parse(parts[5].Trim()));
+            }
+            _goals.Add(goal);
+        }
+
+        Console.WriteLine($"Goals loaded from {filename}.");
     }
 
 }
