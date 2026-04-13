@@ -6,6 +6,10 @@ public class GoalManager
     private List<Goal> _goals = new List<Goal>();
     private int _score;
 
+    private int _level = -1;
+    private int _streak = 0;
+    private DateTime _lastCompletedEvent = DateTime.MinValue;
+
     public GoalManager()
     {
 
@@ -13,7 +17,50 @@ public class GoalManager
 
     public void Start()
     {
+        bool running = true;
 
+        while (running)
+        {
+            DisplayPlayerInfo();
+
+            Console.WriteLine();
+            Console.WriteLine("Menu Options: ");
+            Console.WriteLine(" 1. Create New Goal");
+            Console.WriteLine(" 2. List Goals");
+            Console.WriteLine(" 3. Save Goals");
+            Console.WriteLine(" 4. Load Goals");
+            Console.WriteLine(" 5. Record Event");
+            Console.WriteLine(" 6. Quit");
+            Console.WriteLine("Enter option: ");
+            Console.Write("> ");
+            string choice = Console.ReadLine();
+
+            if (choice == "1")
+            {
+                CreateGoal();
+            }
+            else if (choice == "2")
+            {
+                ListGoalNames();
+            }
+            else if (choice == "3")
+            {
+                SaveGoals();
+            }
+            else if (choice == "4")
+            {
+                LoadGoals();
+            }
+            else if (choice == "5")
+            {
+                RecordEvent();
+            }
+            else if (choice == "6")
+            {
+                running = false;
+            }
+
+        }
     }
 
     public void DisplayPlayerInfo()
@@ -91,9 +138,8 @@ public class GoalManager
         }
     }
 
-    public void RecordEvent()
+    public virtual void RecordEvent()
     {
-        ListGoalNames();
 
         if (_goals.Count == 0)
         {
@@ -101,12 +147,17 @@ public class GoalManager
             return;
         }
 
+        Console.WriteLine("Current goals: ");
+        ListGoalNames();
+
         Console.WriteLine("Select accomplished goal: ");
         Console.WriteLine();
         int choice = int.Parse(Console.ReadLine());
         int index = choice - 1;
-        _score += int.Parse(_goals[index].GetPoints());
-        Console.WriteLine($"Goal complete! You hav earned {_goals[index].GetPoints()} pts.");
+        int pointsEarned = _goals[index].RecordEvent();
+        _score += pointsEarned;
+        Console.WriteLine($"Goal complete! You hav earned {pointsEarned} pts.");
+        Console.WriteLine($"You have a total: {_score} pts.");
 
 
     }
