@@ -26,13 +26,29 @@ public class Goal
 
     public virtual string GetDetailsString()
     {
-        return "";
+        return $"{_shortName}: {_description} ({_points} pts.)";
     }
 
     public virtual string GetStringRepresentation()
     {
 
         return "";
+    }
+
+    public string GetName()
+    {
+
+        return _shortName;
+    }
+
+    public string GetDescription()
+    {
+        return _description;
+    }
+
+    public string GetPoints()
+    {
+        return _points;
     }
 
 }

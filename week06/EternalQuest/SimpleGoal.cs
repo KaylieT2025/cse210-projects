@@ -25,5 +25,9 @@ public class SimpleGoal : Goal
         return _isComplete;
     }
 
-
+    public override string GetDetailsString()
+    {
+        string checkbox = _isComplete ? "[X]" : "[ ]";
+        return $"{checkbox} {base.GetDetailsString()}";
+    }
 }

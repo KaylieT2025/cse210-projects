@@ -21,6 +21,6 @@ public class Eternal : Goal
 
     public override string GetStringRepresentation()
     {
-        return $"Eternal Goal: {GetDetailsString()}";
+        return $"[ ] {GetDetailsString()}";
     }
 }
