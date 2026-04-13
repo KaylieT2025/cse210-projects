@@ -48,6 +48,47 @@ public class GoalManager
         Console.WriteLine();
         Console.WriteLine("Enter Choice (1-3): ");
         int choice = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter goal name: ");
+        string name = Console.ReadLine();
+        Console.WriteLine():
+
+        Console.Write("Enter description: ");
+        string description = Console.ReadLine();
+        Console.WriteLine();
+
+        Console.Write("Enter points: ");
+        string points = Console.ReadLine();
+        Console.WriteLine();
+
+        Goal newGoal = null;
+
+        if (choice == 1)
+        {
+            newGoal = new SimpleGoal(name, description, points);
+        }
+        else if (choice == 2)
+        {
+            newGoal = new Eternal(name, description, points);
+        }
+        else if (choice == 3)
+        {
+            Console.Write("Enter target count: ");
+            int target = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+
+            Console.Write("Enter bonus points: ");
+            int bonus = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+
+            newGoal = new ChecklistGoal(name, description, points, target, bonus);
+
+            if (newGoal != null)
+            {
+                _goals.Add(newGoal);
+                Console.WriteLine("Goal created.");
+            }
+        }
     }
 
     public void RecordEvent()
