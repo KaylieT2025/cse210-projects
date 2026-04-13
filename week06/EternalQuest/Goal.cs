@@ -1,6 +1,6 @@
 using System;
 
-public class Goal
+public class Goal : GoalManager
 {
     private string _shortName;
     private string _description;
@@ -16,12 +16,12 @@ public class Goal
 
     public virtual void RecordEvent()
     {
-
+       
     }
 
     public virtual bool IsComplete()
     {
-        return false;
+        return true;
     }
 
     public virtual string GetDetailsString()

@@ -24,7 +24,10 @@ public class GoalManager
 
     public void ListGoalNames()
     {
-
+        for (int i = 0; i < _goals.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {_goals[i].GetName()}");
+        }
     }
 
     public void ListGoalDetails()
@@ -42,6 +45,21 @@ public class GoalManager
 
     public void RecordEvent()
     {
+        ListGoalNames();
+
+        if (_goals.Count == 0)
+        {
+            Console.WriteLine("No goals available.");
+            return;
+        }
+
+        Console.WriteLine("Select accomplished goal: ");
+        Console.WriteLine();
+        int choice = int.Parse(Console.ReadLine());
+        int index = choice - 1;
+        _score += int.Parse(_goals[index].GetPoints());
+        Console.WriteLine($"Goal complete! You hav earned {_goals[index].GetPoints()} pts.");
+
 
     }
 
