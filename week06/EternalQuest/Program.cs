@@ -15,5 +15,8 @@ class Program
 
         manager.DisplayPlayerInfo();
         Console.WriteLine();
+
+        manager.CreateGoal();
+        Console.WriteLine();
     }
 }

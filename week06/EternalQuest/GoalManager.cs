@@ -41,6 +41,13 @@ public class GoalManager
     public void CreateGoal()
     {
 
+        Console.WriteLine("Select goal type: ");
+        Console.WriteLine("1. Simple Goal");
+        Console.WriteLine("2. Eternal Goal");
+        Console.WriteLine("3. Checklist Goal");
+        Console.WriteLine();
+        Console.WriteLine("Enter Choice (1-3): ");
+        int choice = int.Parse(Console.ReadLine());
     }
 
     public void RecordEvent()
