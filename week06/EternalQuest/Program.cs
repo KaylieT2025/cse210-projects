@@ -8,7 +8,7 @@ class Program
 
         GoalManager manager = new GoalManager();
 
-        Goal goal = new SimpleGoal("Test Goal", "This is a test goal.", "100");
+        /*Goal goal = new SimpleGoal("Test Goal", "This is a test goal.", "100");
         Console.WriteLine();
         Console.WriteLine(goal.GetStringRepresentation());
         Console.WriteLine();
@@ -17,6 +17,9 @@ class Program
         Console.WriteLine();
 
         manager.CreateGoal();
-        Console.WriteLine();
+        Console.WriteLine();*/
+
+        manager.DisplayPlayerInfo();
+        manager.Start();
     }
 }

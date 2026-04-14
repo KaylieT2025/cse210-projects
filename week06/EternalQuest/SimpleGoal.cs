@@ -10,9 +10,20 @@ public class SimpleGoal : Goal
         _isComplete = false;
     }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
-        _isComplete = true;
+        if (_amountComplete < _target)
+        {
+            _amountComplete++;
+            int points = int.Parse(GetPoints());
+
+            if (_amountComplete == _target)
+            {
+                return points + _bonus;
+            }
+            return points;
+        }
+        return 0;
     }
 
     public override string GetStringRepresentation()

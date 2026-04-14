@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Xml;
 
 public class GoalManager
 {
@@ -66,7 +67,9 @@ public class GoalManager
     public void DisplayPlayerInfo()
     {
 
-        Console.WriteLine($"You have {_score} pts.");
+        Console.WriteLine($"Level: {_level}");
+        Console.WriteLine($"Score: {_score} pts.");
+        Console.WriteLine($"Streak: 🔥 {_streak} 🔥");
     }
 
     public void ListGoalNames()
@@ -138,24 +141,28 @@ public class GoalManager
         }
     }
 
-    public virtual void RecordEvent()
+    public void RecordEvent()
     {
 
         if (_goals.Count == 0)
         {
             Console.WriteLine("No goals available.");
             return;
+            
         }
 
         Console.WriteLine("Current goals: ");
         ListGoalNames();
 
         Console.WriteLine("Select accomplished goal: ");
-        Console.WriteLine();
         int choice = int.Parse(Console.ReadLine());
+        Console.WriteLine();
+
         int index = choice - 1;
         int pointsEarned = _goals[index].RecordEvent();
         _score += pointsEarned;
+        UpdateStreak();
+        LevelUp();
         Console.WriteLine($"Goal complete! You hav earned {pointsEarned} pts.");
         Console.WriteLine($"You have a total: {_score} pts.");
 
@@ -191,8 +198,11 @@ public class GoalManager
         string[] lines = File.ReadAllLines(filename);
 
         _score = int.Parse(lines[0]);
+        _level = int.Parse(lines[1]);
+        _streak = int.Parse(lines[2]);
+        _lastCompletedEvent = DateTime.Parse(lines[3]);
 
-        for (int i = 1; i < lines.Length; i++)
+        for (int i = 4; i < lines.Length; i++)
         {
             string line = lines[i];
             string[] parts = line.Split(":");
@@ -216,5 +226,40 @@ public class GoalManager
 
         Console.WriteLine($"Goals loaded from {filename}.");
     }
+
+    private void LevelUp()
+    {
+        int newLevel = (_score / 1000) + 1;
+        if (newLevel > _level)
+        {
+            _level = newLevel;
+            Console.WriteLine();
+            Console.WriteLine($"LEVEL UP!");
+            Console.WriteLine($"You are now level {_level}!");
+        }
+    }
+
+    private void UpdateStreak()
+    {
+
+        DateTime today = DateTime.Today;
+
+        if (_lastCompletedEvent == DateTime.MinValue)
+        {
+            _streak = 1;
+        }
+        else if (_lastCompletedEvent == today.AddDays(-1))
+        {
+            _streak++;
+        }
+        else if (_lastCompletedEvent != today)
+        {
+            _streak = 1;
+        }
+
+        _lastCompletedEvent = today;
+        Console.WriteLine($"You current streak is 🔥 {_streak} 🔥 day(s).");
+    }
+    
 
 }

@@ -8,9 +8,9 @@ public class Eternal : Goal
 
     }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
-
+        return int.Parse(GetPoints());
     }
 
     public override bool IsComplete()

@@ -15,7 +15,7 @@ public class ChecklistGoal : Goal
 
     }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
         if (_amountComplete < _target)
         {
