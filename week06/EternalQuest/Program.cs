@@ -19,7 +19,7 @@ class Program
         manager.CreateGoal();
         Console.WriteLine();*/
 
-        manager.DisplayPlayerInfo();
+        //manager.DisplayPlayerInfo();
         manager.Start();
     }
 }

@@ -12,23 +12,17 @@ public class SimpleGoal : Goal
 
     public override int RecordEvent()
     {
-        if (_amountComplete < _target)
+        if (!_isComplete)
         {
-            _amountComplete++;
-            int points = int.Parse(GetPoints());
-
-            if (_amountComplete == _target)
-            {
-                return points + _bonus;
-            }
-            return points;
+            _isComplete = true;
+            return int.Parse(GetPoints());
         }
         return 0;
     }
 
     public override string GetStringRepresentation()
     {
-        return $"Simple Goal: {GetDetailsString()} - Completed: {_isComplete}";
+        return $"SimpleGoal:{GetName()}|{GetDescription()}|{GetPoints()}|{_isComplete}";
     }
 
     public override bool IsComplete()
@@ -39,6 +33,11 @@ public class SimpleGoal : Goal
     public override string GetDetailsString()
     {
         string checkbox = _isComplete ? "[X]" : "[ ]";
-        return $"{checkbox} {base.GetDetailsString()}";
+        return $"{checkbox} {GetName()}: {GetDescription()} ({GetPoints()} pts.)";
+    }
+
+    public SimpleGoal(string name, string description, string points, bool isComplete) : base(name, description, points)
+    {
+        _isComplete = isComplete;
     }
 }

@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using System.IO;
 
 public class GoalManager
 {
     private List<Goal> _goals = new List<Goal>();
     private int _score;
 
-    private int _level = -1;
+    private int _level = 0;
     private int _streak = 0;
     private DateTime _lastCompletedEvent = DateTime.MinValue;
 
@@ -42,7 +43,7 @@ public class GoalManager
             }
             else if (choice == "2")
             {
-                ListGoalNames();
+                ListGoalDetails();
             }
             else if (choice == "3")
             {
@@ -67,6 +68,7 @@ public class GoalManager
     public void DisplayPlayerInfo()
     {
 
+        Console.WriteLine();
         Console.WriteLine($"Level: {_level}");
         Console.WriteLine($"Score: {_score} pts.");
         Console.WriteLine($"Streak: 🔥 {_streak} 🔥");
@@ -82,6 +84,13 @@ public class GoalManager
 
     public void ListGoalDetails()
     {
+
+        if (_goals.Count == 0)
+        {
+            Console.WriteLine("No available goals.");
+            return;
+        }
+
         for (int i = 0; i < _goals.Count; i++)
         {
             Console.WriteLine($"{i + 1}. {_goals[i].GetDetailsString()}");
@@ -133,11 +142,17 @@ public class GoalManager
 
             newGoal = new ChecklistGoal(name, description, points, target, bonus);
 
-            if (newGoal != null)
+            /*if (newGoal != null)
             {
                 _goals.Add(newGoal);
                 Console.WriteLine("Goal created.");
-            }
+            }*/
+        }
+        if (newGoal != null)
+        {
+            _goals.Add(newGoal);
+            Console.WriteLine("Goal created.");
+            Console.WriteLine($"GOAL COUNT: {_goals.Count}");
         }
     }
 
@@ -178,6 +193,9 @@ public class GoalManager
         {
 
             writer.WriteLine(_score);
+            writer.WriteLine(_level);
+            writer.WriteLine(_streak);
+            writer.WriteLine(_lastCompletedEvent);
 
             foreach (Goal goal in _goals)
             {
@@ -194,37 +212,72 @@ public class GoalManager
         string filename = Console.ReadLine();
 
         _goals.Clear();
-
         string[] lines = File.ReadAllLines(filename);
+
 
         _score = int.Parse(lines[0]);
         _level = int.Parse(lines[1]);
         _streak = int.Parse(lines[2]);
         _lastCompletedEvent = DateTime.Parse(lines[3]);
 
-        for (int i = 4; i < lines.Length; i++)
+        for (int i = 4; i < lines.Length; i++) 
         {
             string line = lines[i];
             string[] parts = line.Split(":");
             string goalType = parts[0].Trim();
+            string[] details = parts[1].Split("|");
 
             Goal goal = null;
+
             if (goalType == "Simple Goal")
             {
-                goal = new SimpleGoal(parts[1].Trim(), parts[2].Trim(), parts[3].Trim());
+                string name = details[0];
+                string description = details[1];
+                string points = details[2];
+                bool isComplete = bool.Parse(details[3]);
+                //goal = new SimpleGoal(parts[1].Trim(), parts[2].Trim(), parts[3].Trim(), bool.Parse(parts[4].Trim()));
+                goal = new SimpleGoal(name, description, points);
+
+                if (isComplete)
+                {
+                    goal.RecordEvent();
+                }
+                //_goals.Add(goal);
             }
             else if (goalType == "Eternal Goal")
             {
-                goal = new Eternal(parts[1].Trim(), parts[2].Trim(), parts[3].Trim());
+
+                string name = details[0];
+                string description = details[1];
+                string points = details[2];
+
+                //goal = new Eternal(parts[1].Trim(), parts[2].Trim(), parts[3].Trim());
+                goal = new Eternal(name, description, points);
+                //_goals.Add(goal);
             }
             else if (goalType == "Checklist Goal")
             {
-                goal = new ChecklistGoal(parts[1].Trim(), parts[2].Trim(), parts[3].Trim(), int.Parse(parts[4].Trim()), int.Parse(parts[5].Trim()));
+                string name = details[0];
+                string description = details[1];
+                string points = details[2];
+                int target = int.Parse(details[3]);
+                int amountCompleted = int.Parse(details[4]);
+                int bonus = int.Parse(details[5]);
+
+                //goal = new ChecklistGoal(parts[1].Trim(), parts[2].Trim(), parts[3].Trim(), int.Parse(parts[4].Trim()), int.Parse(parts[5].Trim()));
+                goal = new ChecklistGoal(name, description, points, target, bonus);
+                //goal.SetAmountComplete(amountCompleted);
+                ((ChecklistGoal)goal).SetAmountComplete(amountCompleted);
+                if (goal != null)
+                {
+                    _goals.Add(goal);
+                }
             }
-            _goals.Add(goal);
+           // _goals.Add(goal);
         }
 
         Console.WriteLine($"Goals loaded from {filename}.");
+        ListGoalDetails();
     }
 
     private void LevelUp()

@@ -23,4 +23,12 @@ public class Eternal : Goal
     {
         return $"[ ] {GetDetailsString()}";
     }
+
+
+//Testing for [ ]
+    public override string GetDetailsString()
+    {
+        string checkbox = "[ ]";
+        return $"{checkbox} {GetName()}: {GetDescription()} ({GetPoints()} pts.)";
+    }
 }

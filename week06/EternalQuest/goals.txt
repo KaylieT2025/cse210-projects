@@ -1,0 +1,7 @@
+0
+0
+0
+1/1/0001 12:00:00 AM
+SimpleGoal:Test Simple|Testing simple goal.|10|False
+[ ] [ ] Test Eternal: Testing eternal goal. (20 pts.)
+[ ] [ ] Test Checklist: Testing checklist goal. 30 pts. - Progress: 0/2 - Bonus: 5 points|0|2

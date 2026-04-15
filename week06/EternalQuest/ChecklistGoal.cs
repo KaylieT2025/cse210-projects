@@ -20,7 +20,15 @@ public class ChecklistGoal : Goal
         if (_amountComplete < _target)
         {
             _amountComplete++;
+            int points = int.Parse(GetPoints());
+
+            if (_amountComplete == _target)
+            {
+                return points + _bonus;
+            }
+            return points;
         }
+        return 0;
     }
 
     public override bool IsComplete()
@@ -30,11 +38,17 @@ public class ChecklistGoal : Goal
 
     public override string GetDetailsString()
     {
-        return $"{base.GetDetailsString()} - Progress: {_amountComplete}/{_target} - Bonus: {_bonus} points";
+        string checkbox = IsComplete() ? "[X]" : "[ ]";
+        return $"{checkbox} {GetName()}: {GetDescription()} {GetPoints()} pts. - Progress: {_amountComplete}/{_target} - Bonus: {_bonus} points";
     }
 
     public override string GetStringRepresentation()
     {
-        return $"[ ] {GetDetailsString()} - Completed: {_amountComplete}/{_target}";
+        return $"[ ] {GetDetailsString()}|{_amountComplete}|{_target}";
+    }
+
+    public void SetAmountComplete(int amount)
+    {
+        _amountComplete = amount;
     }
 }
