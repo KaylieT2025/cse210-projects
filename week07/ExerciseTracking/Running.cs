@@ -25,8 +25,8 @@ public class Running : Activity
         return GetMinutes() / _distance;
     }
 
-    public override string GetSummary()
+    /*public override string GetSummary()
     {
         return $"{GetDate()} Running ({GetMinutes()} min) Distance: {GetDistance():F1} miles Speed: {GetSpeed():F1} mph Pace: {GetPace():F1} min/mile";
-    }
+    }*/
 }

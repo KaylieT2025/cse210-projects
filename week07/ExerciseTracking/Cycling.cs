@@ -25,8 +25,8 @@ public class Cycling : Activity
         return 60 / _speed;
     }
 
-    public override string GetSummary()
+    /*public override string GetSummary()
     {
-        return $"{GetDate()} Cycling ({GetMinutes()} min) Distance: {GetDistance():F1} Speed: {GetSpeed():F1} Pace: {GetPace():F1}";
-    }
+        return $"{GetDate()} Cycling ({GetMinutes()} min) Distance: {GetDistance():F1} miles Speed: {GetSpeed():F1} mph Pace: {GetPace():F1} min/mile";
+    }*/
 }
